@@ -5,6 +5,9 @@ from math import log, sqrt, pi, exp
 from scipy.stats import norm
 
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.set_theme()
 
 #тут необходимо добавить более ранние серии и отработать 3/22
 EXP_DATES = {
@@ -495,23 +498,42 @@ class Jarvis:
             print()
         except:
             pass
-        print('Head:')
-        display(self.futures_df.head())
-        print()
-        print('Tail:')
-        display(self.futures_df.tail())
-        print()
-        print('Info:')
-        print(self.futures_df.info())
-        print()
-        print('Missings:')
-        print(self.futures_df.isna().sum().sort_values(ascending = False))
-        print()
-        print('Monotonic:')
-        print(self.futures_df.index.is_monotonic)
-        print()
-        print('Describe:')
-        display(self.futures_df.describe())
+        try:
+            print('Head:')
+            display(self.futures_df.head())
+            print()
+        except:
+            pass
+        try:
+            print('Tail:')
+            display(self.futures_df.tail())
+            print()
+        except:
+            pass
+        try:
+            print('Info:')
+            print(self.futures_df.info())
+            print()
+        except:
+            pass
+        try:
+            print('Missings:')
+            print(self.futures_df.isna().sum().sort_values(ascending = False))
+            print()
+        except:
+            pass
+        try:
+            print('Monotonic:')
+            print(self.futures_df.index.is_monotonic)
+            print()
+        except:
+            pass
+        try:
+            print('Describe:')
+            display(self.futures_df.describe())
+            print()
+        except:
+            pass
         
         print('Opt info:')
         try:
@@ -520,29 +542,52 @@ class Jarvis:
             print()
         except:
             pass
-        print('Opt parse log:')
-        print(self.qrt_opt_parse_log.mean())
-        print('Head:')
-        display(self.qrt_opt.head())
-        print()
-        print('Tail:')
-        display(self.qrt_opt.tail())
-        print()
-        print('Info:')
-        print(self.qrt_opt.info())
-        print()
-        print('Missings:')
-        print(self.qrt_opt.isna().sum().sort_values(ascending = False))
-        print()
-        print('Monotonic:')
-        print(self.qrt_opt.index.is_monotonic)
-        print()
-        print('Describe:')
-        display(self.qrt_opt.describe())
+        try:
+            print('Opt parse log:')
+            print(self.qrt_opt_parse_log.mean())
+            print()
+        except:
+            pass
+        try:
+            print('Head:')
+            display(self.qrt_opt.head())
+            print()
+        except:
+            pass
+        try:
+            print('Tail:')
+            display(self.qrt_opt.tail())
+            print()
+        except:
+            pass
+        try:
+            print('Info:')
+            print(self.qrt_opt.info())
+            print()
+        except:
+            pass
+        try:
+            print('Missings:')
+            print(self.qrt_opt.isna().sum().sort_values(ascending = False))
+            print()
+        except:
+            pass
+        try:
+            print('Monotonic:')
+            print(self.qrt_opt.index.is_monotonic)
+            print()
+        except:
+            pass
+        try:
+            print('Describe:')
+            display(self.qrt_opt.describe())
+            print()
+        except:
+            pass
         print('-----')
         
 class Vision:
-    def __init__(self, name_):
+    def __init__(self, name_, fut = True, opt = True, iv = True):
         self.TARGET = TARGET_COLUMN_NAME
         self.MONTHS = ['3', '6', '9', '12']
         self.YEARS = ['17', '18', '19', '20', '21']
@@ -554,7 +599,7 @@ class Vision:
             for month in self.MONTHS:
                 name = self.name + '-' + str(month) + '.' + str(year)
                 self.names_list.append(name)
-                self.objects_dict[name] = Jarvis(name)
+                self.objects_dict[name] = Jarvis(name, fut = fut, opt = opt, iv = iv)
                 
     #-----we need some methods for most common analysis patterns
     def plot(self, what_to_plot = 'fut', value = 'adjp'):
