@@ -1,3 +1,3 @@
 # fictional-system
 
-this rep. includes options_analysis.ipynb, contains some option analysis features, and some nesesery folders and csv. files with futures and options marcet histiry. MIT licensed.
+this rep. includes avengers.py, contains some option analysis features, options_analysis.ipynb with some examples and some nesesery folders and csv. files with futures and options marcet histiry. MIT licensed.
