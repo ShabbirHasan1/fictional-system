@@ -615,6 +615,34 @@ class Vision:
                 str(target.index[target.shape[0]-1].day+1)
                 targets = pd.concat([targets, target])
             targets[self.TARGET].plot(figsize = (15, 9))
+            
+    def iv_plot(self, what_to_plot = 'iv'):
+        start_date = '2000-01-01'
+        if what_to_plot == 'iv':
+            targets = pd.DataFrame()
+            for name in self.names_list:
+                object_ = self.objects_dict[name]
+                target = object_.vola_df[['center_iv']]
+                target = target[start_date:]
+                start_date = str(target.index[target.shape[0]-1].year) + '-' + \
+                str(target.index[target.shape[0]-1].month) + '-' + \
+                str(target.index[target.shape[0]-1].day+1)
+                targets = pd.concat([targets, target])
+            targets['center_iv'].plot(figsize = (15, 9))
+            
+    def iv_hist(self, what_to_plot = 'iv'):
+        start_date = '2000-01-01'
+        if what_to_plot == 'iv':
+            targets = pd.DataFrame()
+            for name in self.names_list:
+                object_ = self.objects_dict[name]
+                target = object_.vola_df[['center_iv']]
+                target = target[start_date:]
+                start_date = str(target.index[target.shape[0]-1].year) + '-' + \
+                str(target.index[target.shape[0]-1].month) + '-' + \
+                str(target.index[target.shape[0]-1].day+1)
+                targets = pd.concat([targets, target])
+            targets['center_iv'].hist(bins = 50, figsize = (15, 9))
 
 class Tony:
     def __init__(self):
