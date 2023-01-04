@@ -143,7 +143,7 @@ class Jarvis:
     Backtesting is planned.
     """
     
-    def __init__(self, name, fut = True, opt = True, iv = True):
+    def __init__(self, name, fut = True, opt = True):
         
         #-----init_constants:
         self.N_STRIKES = 8
@@ -185,7 +185,6 @@ class Jarvis:
             self.lower = round(self.futures_df[self.TARGET_COLUMN].min() / self.strike_step) * self.strike_step
             self.upper = round(self.futures_df[self.TARGET_COLUMN].max() / self.strike_step) * self.strike_step
             self.qrt_opt_parse_log, self.qrt_opt = self.opt()
-        if iv:
             self.vola_log, self.vola_df = self.center_strike()
 
     #-----B.-Sh. formulae implementation:
@@ -587,7 +586,7 @@ class Jarvis:
         print('-----')
         
 class Vision:
-    def __init__(self, name_, fut = True, opt = True, iv = True):
+    def __init__(self, name_, fut_ = True, opt_ = True):
         self.TARGET = TARGET_COLUMN_NAME
         self.MONTHS = ['3', '6', '9', '12']
         self.YEARS = ['17', '18', '19', '20', '21']
@@ -599,7 +598,7 @@ class Vision:
             for month in self.MONTHS:
                 name = self.name + '-' + str(month) + '.' + str(year)
                 self.names_list.append(name)
-                self.objects_dict[name] = Jarvis(name, fut = fut, opt = opt, iv = iv)
+                self.objects_dict[name] = Jarvis(name, fut = fut_, opt = opt_)
                 
     #-----we need some methods for most common analysis patterns
     def plot(self, what_to_plot = 'fut', value = 'adjp'):
